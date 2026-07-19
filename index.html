@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f1e8">
+  <title>Exam Watch — Nhật ký giám sát bài thi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Exam Watch">
+      <span class="brand-mark">EW</span>
+      <span>Exam Watch</span>
+    </a>
+    <div class="status-pill" id="statusPill"><span></span><b>Chưa bắt đầu</b></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">GIÁM SÁT PHIÊN LÀM BÀI</div>
+      <h1>Minh bạch từng<br><em>khoảnh khắc.</em></h1>
+      <p>Ghi nhận các tín hiệu rời trang, chuyển ứng dụng và gián đoạn phiên mà trình duyệt cho phép — ngay trên iPhone Safari.</p>
+      <div class="hero-actions">
+        <button class="primary" id="startBtn"><span>Bắt đầu giám sát</span><i>→</i></button>
+        <button class="secondary" id="demoBtn">Thử vi phạm mẫu</button>
+      </div>
+    </section>
+
+    <section class="dashboard">
+      <article class="score-card">
+        <div class="card-head"><span>MỨC ĐỘ TIN CẬY</span><span class="live-dot">LIVE</span></div>
+        <div class="score-row"><strong id="trustScore">100</strong><small>/100</small></div>
+        <div class="meter"><i id="scoreMeter"></i></div>
+        <p id="scoreMessage">Sẵn sàng cho một phiên làm bài mới.</p>
+      </article>
+
+      <div class="stats">
+        <article><span>TỔNG VI PHẠM</span><strong id="totalCount">0</strong><small>sự kiện</small></article>
+        <article><span>THỜI GIAN RỜI TRANG</span><strong id="awayTime">00:00</strong><small>phút : giây</small></article>
+        <article><span>THỜI LƯỢNG PHIÊN</span><strong id="sessionTime">00:00</strong><small>phút : giây</small></article>
+      </div>
+    </section>
+
+    <section class="log-section">
+      <div class="section-heading">
+        <div><span class="eyebrow">DÒNG THỜI GIAN</span><h2>Nhật ký sự kiện</h2></div>
+        <div class="log-actions">
+          <button id="exportBtn" disabled>Xuất JSON</button>
+          <button id="clearBtn" disabled>Xóa log</button>
+        </div>
+      </div>
+      <div class="log-panel" id="logPanel">
+        <div class="empty-state" id="emptyState">
+          <div class="radar"><i></i><b></b></div>
+          <h3>Chưa có dữ liệu</h3>
+          <p>Bắt đầu giám sát để ghi nhận các sự kiện trong phiên.</p>
+        </div>
+        <div class="log-list" id="logList" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="how-it-works">
+      <div><span class="eyebrow">CÁCH HOẠT ĐỘNG</span><h2>Các tín hiệu được theo dõi</h2></div>
+      <div class="signal-grid">
+        <article><b>01</b><h3>Rời khỏi trang</h3><p>Ghi nhận khi tab bị ẩn, người dùng chuyển ứng dụng hoặc khóa màn hình.</p></article>
+        <article><b>02</b><h3>Mất tiêu điểm</h3><p>Phát hiện cửa sổ trình duyệt không còn nhận tương tác.</p></article>
+        <article><b>03</b><h3>Gián đoạn phiên</h3><p>Đo thời gian vắng mặt và ghi nhận lúc người dùng quay lại.</p></article>
+      </div>
+      <p class="privacy-note"><b>Lưu ý quyền riêng tư:</b> Trang chỉ dùng API sự kiện tiêu chuẩn của trình duyệt. Safari không cung cấp tên ứng dụng đã mở, nội dung màn hình hay hoạt động ngoài trình duyệt. Log được lưu trên chính thiết bị và không tự gửi đến máy chủ.</p>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
