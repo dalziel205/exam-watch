@@ -8,6 +8,19 @@ const labels = {
   demo: ['Vi phạm mô phỏng', 'Sự kiện mẫu để kiểm tra giao diện nhật ký.']
 };
 
+function detectSEB(){
+  const api=window.SafeExamBrowser;
+  const detected=Boolean(api && (api.version || api.security));
+  const pill=$('#sebPill'), launch=$('#sebLaunch');
+  if(detected){
+    pill.classList.add('detected');launch.classList.add('active');
+    $('#sebStatus').textContent=api.version ? `Đã kết nối · ${String(api.version).split('_')[1]||'SEB'}` : 'Đã kết nối';
+    launch.querySelector('b').textContent='Đang chạy trong Safe Exam Browser';
+    launch.querySelector('p').textContent=api.version||'Chế độ thi an toàn đang hoạt động.';
+  }else $('#sebStatus').textContent='Chưa kết nối';
+  return detected;
+}
+
 function formatDuration(ms){
   const sec=Math.max(0,Math.floor(ms/1000)), m=Math.floor(sec/60), s=sec%60;
   return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
@@ -56,4 +69,4 @@ $('#startBtn').addEventListener('click',start);
 $('#demoBtn').addEventListener('click',()=>{addLog('demo');toast('Đã thêm một vi phạm mẫu')});
 $('#clearBtn').addEventListener('click',()=>{state.logs=[];renderLogs();updateScore();persist();toast('Đã xóa nhật ký')});
 $('#exportBtn').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({exportedAt:new Date().toISOString(),session:state},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`exam-watch-${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(a.href)});
-renderLogs();tick();
+detectSEB();renderLogs();tick();

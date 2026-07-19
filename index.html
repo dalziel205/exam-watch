@@ -17,7 +17,10 @@
       <span class="brand-mark">EW</span>
       <span>Exam Watch</span>
     </a>
-    <div class="status-pill" id="statusPill"><span></span><b>Chưa bắt đầu</b></div>
+    <div class="header-statuses">
+      <div class="seb-pill" id="sebPill"><span>SEB</span><b id="sebStatus">Đang kiểm tra</b></div>
+      <div class="status-pill" id="statusPill"><span></span><b>Chưa bắt đầu</b></div>
+    </div>
   </header>
 
   <main>
@@ -28,6 +31,12 @@
       <div class="hero-actions">
         <button class="primary" id="startBtn"><span>Bắt đầu giám sát</span><i>→</i></button>
         <button class="secondary" id="demoBtn">Thử vi phạm mẫu</button>
+      </div>
+      <div class="seb-launch" id="sebLaunch">
+        <div class="seb-launch-icon">S</div>
+        <div><b>Chế độ thi an toàn với SEB</b><p>Khóa chuyển ứng dụng và mở trang trong Safe Exam Browser.</p></div>
+        <a href="exam-watch.seb" class="seb-config-link">Mở bằng SEB</a>
+        <a href="https://safeexambrowser.org/download_en.html" class="seb-download" target="_blank" rel="noopener">Tải SEB</a>
       </div>
     </section>
 
@@ -70,8 +79,9 @@
         <article><b>01</b><h3>Rời khỏi trang</h3><p>Ghi nhận khi tab bị ẩn, người dùng chuyển ứng dụng hoặc khóa màn hình.</p></article>
         <article><b>02</b><h3>Mất tiêu điểm</h3><p>Phát hiện cửa sổ trình duyệt không còn nhận tương tác.</p></article>
         <article><b>03</b><h3>Gián đoạn phiên</h3><p>Đo thời gian vắng mặt và ghi nhận lúc người dùng quay lại.</p></article>
+        <article><b>04</b><h3>Safe Exam Browser</h3><p>Nhận diện SEB bằng API chính thức và hỗ trợ mở bài thi trong chế độ kiosk.</p></article>
       </div>
-      <p class="privacy-note"><b>Lưu ý quyền riêng tư:</b> Trang chỉ dùng API sự kiện tiêu chuẩn của trình duyệt. Safari không cung cấp tên ứng dụng đã mở, nội dung màn hình hay hoạt động ngoài trình duyệt. Log được lưu trên chính thiết bị và không tự gửi đến máy chủ.</p>
+      <p class="privacy-note"><b>Lưu ý quyền riêng tư:</b> Trang chỉ dùng API sự kiện tiêu chuẩn của trình duyệt. Safari không cung cấp tên ứng dụng đã mở, nội dung màn hình hay hoạt động ngoài trình duyệt. Với SEB trên iOS, việc ngăn chuyển ứng dụng do chế độ kiosk của SEB/iOS đảm nhiệm. Log được lưu trên chính thiết bị và không tự gửi đến máy chủ.</p>
     </section>
   </main>
 

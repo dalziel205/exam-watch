@@ -8,6 +8,13 @@ Web app tĩnh ghi nhận các tín hiệu gián đoạn trong phiên làm bài t
 - Cửa sổ mất tiêu điểm
 - Trang bị đóng, điều hướng hoặc đưa vào back-forward cache
 - Thời gian người dùng rời trang và quay lại
+- Nhận diện Safe Exam Browser qua JavaScript API chính thức
+
+## Safe Exam Browser
+
+Tải `exam-watch.seb` từ website và mở bằng Safe Exam Browser. Tệp cấu hình mẫu mở thẳng website trong SEB, bật JavaScript và hạn chế thoát/chuyển ứng dụng. Trên iOS, SEB sử dụng chế độ Single App/Kiosk của hệ điều hành.
+
+> Tệp cấu hình công khai không đặt mật khẩu quản trị và chỉ phù hợp để thử nghiệm. Trước kỳ thi thật, quản trị viên nên mở cấu hình bằng SEB Config Tool, đặt mật khẩu thoát và mã hóa tệp.
 
 ## Giới hạn
 
