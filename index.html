@@ -3,89 +3,112 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#f5f1e8">
+  <meta name="theme-color" content="#ffffff">
   <title>Exam Watch — Nhật ký giám sát bài thi</title>
+  <meta name="description" content="Theo dõi minh bạch các tín hiệu gián đoạn trong phiên làm bài, ngay trên trình duyệt.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="noise" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Đi đến nội dung chính</a>
+
   <header class="topbar">
-    <a class="brand" href="#" aria-label="Exam Watch">
-      <span class="brand-mark">EW</span>
+    <a class="brand" href="#" aria-label="Exam Watch — Trang chủ">
+      <span class="brand-mark" aria-hidden="true">E</span>
       <span>Exam Watch</span>
     </a>
+    <nav class="nav-links" aria-label="Điều hướng chính">
+      <a href="#overview">Tổng quan</a>
+      <a href="#timeline">Nhật ký</a>
+      <a href="#signals">Tín hiệu</a>
+    </nav>
     <div class="header-statuses">
       <div class="seb-pill" id="sebPill"><span>SEB</span><b id="sebStatus">Đang kiểm tra</b></div>
       <div class="status-pill" id="statusPill"><span></span><b>Chưa bắt đầu</b></div>
     </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="eyebrow">GIÁM SÁT PHIÊN LÀM BÀI</div>
-      <h1>Minh bạch từng<br><em>khoảnh khắc.</em></h1>
-      <p>Ghi nhận các tín hiệu rời trang, chuyển ứng dụng và gián đoạn phiên mà trình duyệt cho phép — ngay trên iPhone Safari.</p>
-      <div class="hero-actions">
-        <button class="primary" id="startBtn"><span>Bắt đầu giám sát</span><i>→</i></button>
-        <button class="secondary" id="demoBtn">Thử vi phạm mẫu</button>
+  <main id="main">
+    <section class="hero" id="overview">
+      <div class="hero-copy">
+        <div class="eyebrow"><i></i> GIÁM SÁT PHIÊN LÀM BÀI</div>
+        <h1>Minh bạch<br>từng khoảnh khắc.</h1>
+        <p>Ghi nhận những tín hiệu gián đoạn mà trình duyệt cho phép — rõ ràng, riêng tư và ngay trên thiết bị của bạn.</p>
+        <div class="hero-actions">
+          <button class="button primary" id="startBtn"><span>Bắt đầu giám sát</span><i aria-hidden="true">→</i></button>
+          <button class="button secondary" id="demoBtn">Thử vi phạm mẫu</button>
+        </div>
       </div>
-      <div class="seb-launch" id="sebLaunch">
-        <div class="seb-launch-icon">S</div>
-        <div><b>Chế độ thi an toàn với SEB</b><p>Khóa chuyển ứng dụng và mở trang trong Safe Exam Browser.</p></div>
-        <a href="exam-watch.seb" class="seb-config-link">Mở bằng SEB</a>
-        <a href="https://safeexambrowser.org/download_en.html" class="seb-download" target="_blank" rel="noopener">Tải SEB</a>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="visual-label"><span>SESSION</span><strong>100</strong><small>TRUST SCORE</small></div>
+        <div class="visual-event"><i>!</i><span><b>Tín hiệu trực tiếp</b><small>Cập nhật theo thời gian thực</small></span></div>
       </div>
     </section>
 
-    <section class="dashboard">
+    <section class="seb-launch" id="sebLaunch">
+      <div class="seb-launch-icon">S</div>
+      <div class="seb-copy"><span class="mini-label">CHẾ ĐỘ AN TOÀN</span><b>Thi an toàn hơn với Safe Exam Browser</b><p>Khóa chuyển ứng dụng và mở bài thi trong chế độ kiosk.</p></div>
+      <div class="seb-actions">
+        <a href="exam-watch.seb" class="button primary small">Mở bằng SEB <span>↗</span></a>
+        <a href="https://safeexambrowser.org/download_en.html" class="button tertiary small" target="_blank" rel="noopener">Tải SEB</a>
+      </div>
+    </section>
+
+    <section class="dashboard" aria-label="Tổng quan phiên">
       <article class="score-card">
         <div class="card-head"><span>MỨC ĐỘ TIN CẬY</span><span class="live-dot">LIVE</span></div>
         <div class="score-row"><strong id="trustScore">100</strong><small>/100</small></div>
         <div class="meter"><i id="scoreMeter"></i></div>
         <p id="scoreMessage">Sẵn sàng cho một phiên làm bài mới.</p>
       </article>
-
       <div class="stats">
-        <article><span>TỔNG VI PHẠM</span><strong id="totalCount">0</strong><small>sự kiện</small></article>
-        <article><span>THỜI GIAN RỜI TRANG</span><strong id="awayTime">00:00</strong><small>phút : giây</small></article>
-        <article><span>THỜI LƯỢNG PHIÊN</span><strong id="sessionTime">00:00</strong><small>phút : giây</small></article>
+        <article class="stat-coral"><span>TỔNG VI PHẠM</span><strong id="totalCount">0</strong><small>sự kiện được ghi nhận</small><i>01</i></article>
+        <article class="stat-purple"><span>THỜI GIAN RỜI TRANG</span><strong id="awayTime">00:00</strong><small>phút : giây</small><i>02</i></article>
+        <article class="stat-blue"><span>THỜI LƯỢNG PHIÊN</span><strong id="sessionTime">00:00</strong><small>phút : giây</small><i>03</i></article>
       </div>
     </section>
 
-    <section class="log-section">
+    <section class="log-section" id="timeline">
       <div class="section-heading">
-        <div><span class="eyebrow">DÒNG THỜI GIAN</span><h2>Nhật ký sự kiện</h2></div>
+        <div><span class="eyebrow">DÒNG THỜI GIAN</span><h2>Nhật ký sự kiện</h2><p>Mọi thay đổi quan trọng trong phiên, theo đúng thứ tự thời gian.</p></div>
         <div class="log-actions">
-          <button id="exportBtn" disabled>Xuất JSON</button>
-          <button id="clearBtn" disabled>Xóa log</button>
+          <button class="button tertiary small" id="exportBtn" disabled>Xuất JSON <span>↓</span></button>
+          <button class="button tertiary small" id="clearBtn" disabled>Xóa log</button>
         </div>
       </div>
       <div class="log-panel" id="logPanel">
+        <div class="log-table-head" aria-hidden="true"><span>THỜI GIAN</span><span>SỰ KIỆN</span><span>MỨC ĐỘ</span></div>
         <div class="empty-state" id="emptyState">
           <div class="radar"><i></i><b></b></div>
-          <h3>Chưa có dữ liệu</h3>
-          <p>Bắt đầu giám sát để ghi nhận các sự kiện trong phiên.</p>
+          <h3>Chưa có sự kiện</h3>
+          <p>Bắt đầu giám sát để xem các tín hiệu xuất hiện tại đây.</p>
         </div>
         <div class="log-list" id="logList" aria-live="polite"></div>
       </div>
     </section>
 
-    <section class="how-it-works">
-      <div><span class="eyebrow">CÁCH HOẠT ĐỘNG</span><h2>Các tín hiệu được theo dõi</h2></div>
+    <section class="how-it-works" id="signals">
+      <div class="section-intro"><span class="eyebrow">CÁCH HOẠT ĐỘNG</span><h2>Bốn tín hiệu.<br>Một góc nhìn rõ ràng.</h2></div>
       <div class="signal-grid">
-        <article><b>01</b><h3>Rời khỏi trang</h3><p>Ghi nhận khi tab bị ẩn, người dùng chuyển ứng dụng hoặc khóa màn hình.</p></article>
-        <article><b>02</b><h3>Mất tiêu điểm</h3><p>Phát hiện cửa sổ trình duyệt không còn nhận tương tác.</p></article>
-        <article><b>03</b><h3>Gián đoạn phiên</h3><p>Đo thời gian vắng mặt và ghi nhận lúc người dùng quay lại.</p></article>
-        <article><b>04</b><h3>Safe Exam Browser</h3><p>Nhận diện SEB bằng API chính thức và hỗ trợ mở bài thi trong chế độ kiosk.</p></article>
+        <article><b>01</b><div class="signal-icon">↗</div><h3>Rời khỏi trang</h3><p>Ghi nhận khi tab bị ẩn, người dùng chuyển ứng dụng hoặc khóa màn hình.</p></article>
+        <article><b>02</b><div class="signal-icon">◎</div><h3>Mất tiêu điểm</h3><p>Phát hiện cửa sổ trình duyệt không còn nhận tương tác.</p></article>
+        <article><b>03</b><div class="signal-icon">◷</div><h3>Gián đoạn phiên</h3><p>Đo thời gian vắng mặt và ghi nhận chính xác lúc người dùng quay lại.</p></article>
+        <article><b>04</b><div class="signal-icon">S</div><h3>Safe Exam Browser</h3><p>Nhận diện SEB và hỗ trợ mở bài thi trong chế độ kiosk an toàn.</p></article>
       </div>
-      <p class="privacy-note"><b>Lưu ý quyền riêng tư:</b> Trang chỉ dùng API sự kiện tiêu chuẩn của trình duyệt. Safari không cung cấp tên ứng dụng đã mở, nội dung màn hình hay hoạt động ngoài trình duyệt. Với SEB trên iOS, việc ngăn chuyển ứng dụng do chế độ kiosk của SEB/iOS đảm nhiệm. Log được lưu trên chính thiết bị và không tự gửi đến máy chủ.</p>
+      <div class="privacy-note"><span class="privacy-icon">⌁</span><div><b>Quyền riêng tư là mặc định.</b><p>Trang chỉ dùng API sự kiện tiêu chuẩn của trình duyệt. Safari không cung cấp tên ứng dụng đã mở, nội dung màn hình hay hoạt động bên ngoài. Log được lưu trên chính thiết bị và không tự gửi đến máy chủ.</p></div></div>
+    </section>
+
+    <section class="closing-card">
+      <div><span class="eyebrow light">SẴN SÀNG BẮT ĐẦU?</span><h2>Một phiên thi rõ ràng<br>bắt đầu từ đây.</h2></div>
+      <a class="button light" href="#overview">Về đầu trang <span>↑</span></a>
     </section>
   </main>
 
-  <div class="toast" id="toast" role="status"></div>
+  <footer><a class="brand footer-brand" href="#"><span class="brand-mark">E</span><span>Exam Watch</span></a><p>Công cụ ghi nhận tín hiệu phiên thi trên thiết bị.</p><span>© 2026 Exam Watch</span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="app.js"></script>
 </body>
 </html>
